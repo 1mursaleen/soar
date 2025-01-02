@@ -1,10 +1,7 @@
-import { useState, useEffect, Suspense, lazy } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import Tabs from '@/components/ui/Tabs';
 import AdaptableCard from '@/components/shared/AdaptableCard';
 import Container from '@/components/shared/Container';
-import { useNavigate, useLocation } from 'react-router-dom';
-import isEmpty from 'lodash/isEmpty';
-import { apiGetAccountSettingData } from '@/services/AccountServices';
 import Security from './components/Security';
 import Preferences from './components/Preferences';
 
@@ -41,10 +38,6 @@ type AccountSetting = {
 type GetAccountSettingData = AccountSetting;
 
 const Profile = lazy(() => import('./components/Profile'));
-const Password = lazy(() => import('./components/Preferences'));
-const NotificationSetting = lazy(
-  () => import('./components/Security')
-);
 
 const { TabNav, TabList } = Tabs;
 
@@ -62,15 +55,9 @@ const settingsMenu: Record<
 
 const Settings = () => {
   const [currentTab, setCurrentTab] = useState('profile');
-  const navigate = useNavigate();
-  const location = useLocation();
-  const path = location.pathname.substring(
-    location.pathname.lastIndexOf('/') + 1
-  );
 
   const onTabChange = (val: string) => {
     setCurrentTab(val);
-    // navigate(`/account/settings/${val}`);
   };
 
   return (

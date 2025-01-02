@@ -60,14 +60,11 @@ const DashboardBody = () => {
 
   return (
     <Loading loading={loading}>
-      <div className='flex justify-between gap-4 flex-wrap lg:flex-nowrap items-start'>
-        <div className='w-full lg:w-2/3 flex justify-between items-start'>
-          <CreditCards cardsData={cards} />
-        </div>
-        <div className='1/3 flex justify-end items-center'>
-          <RecentTransactions />
-        </div>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
+        <CreditCards cardsData={cards} className='lg:col-span-2' />
+        <RecentTransactions className='lg:col-span-1' />
       </div>
+
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
         <WeeklyActivity className='lg:col-span-2' />
         <ExpenseStatistics data={dashboardData?.salesByCategoriesData} />

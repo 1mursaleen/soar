@@ -26,7 +26,7 @@ const BalanceHistory = ({ className }: BalanceHistoryProps) => {
 
   return (
     <div className={className}>
-      <h4 className='text-[22px] font-semibold text-primary mb-5'>
+      <h4 className='text-lg lg:text-[22px] font-semibold text-primary mb-5'>
         Balance History
       </h4>
 

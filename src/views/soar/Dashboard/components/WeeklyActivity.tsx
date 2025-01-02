@@ -33,13 +33,12 @@ const WeeklyActivity = ({ className }: WeeklyActivityProps) => {
 
   return (
     <div className={className}>
-      <h4 className="text-[22px] font-semibold text-primary mb-5">
+      <h4 className="text-lg lg:text-[22px] font-semibold text-primary mb-5">
         Weekly Activity
       </h4>
 
       <Card>
         <div className="w-full flex items-center justify-end gap-5">
-          {/* Custom legends */}
           <div
             className={`flex items-center gap-2 font-inter font-normal md:text-base text-sm cursor-pointer ${
               visibleSeries.Deposit ? "text-[#718EBF]" : "text-gray-400"

@@ -14,7 +14,7 @@ import navigationConfig from "@/configs/navigation.config";
 import VerticalMenuContent from "@/components/template/VerticalMenuContent";
 import useResponsive from "@/utils/hooks/useResponsive";
 import { useAppSelector } from "@/store";
-// import ClipboardIcon from "@/assets/svg/ClipBoardIcon";
+import ClipboardIcon from "@/assets/svg/ClipBoardIcon";
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -86,7 +86,7 @@ const SideNav = () => {
           )}
         >
           <div className="side-nav-header flex items-center gap-3 bg-white pl-6 p-4 h-[105px]">
-            {/* <ClipboardIcon /> */}
+            <ClipboardIcon />
             {!sideNavCollapse && (
               <h1 className="font-extrabold text-2xl font-Inter text-primary">
                 Soar Task

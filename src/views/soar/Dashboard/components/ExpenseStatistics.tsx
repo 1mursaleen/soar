@@ -1,5 +1,5 @@
 import Card from '@/components/ui/Card';
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 type ExpenseStatisticsProps = {
   data?: {
@@ -35,18 +35,18 @@ const ExpenseStatistics = ({
           fill='white'
           textAnchor='middle'
           dominantBaseline='central'
-          fontSize={14}
+          fontSize={"0.625rem"}
           fontWeight='bold'
         >
           {`${(percent * 100).toFixed(0)}%`} {/* Percentage in bold */}
         </text>
         <text
           x={x}
-          y={y + 8} 
+          y={y + 8}
           fill='white'
           textAnchor='middle'
           dominantBaseline='central'
-          fontSize={12}
+          fontSize={"0.625rem"}
         >
           {categoryName} {/* Category name below */}
         </text>
@@ -56,40 +56,42 @@ const ExpenseStatistics = ({
 
   return (
     <div>
-      <h4 className='text-[22px] font-semibold text-primary mb-5'>
+      <h4 className='text-lg lg:text-[22px] font-semibold text-primary mb-5'>
         Expense Statistics
       </h4>
       <Card>
-        <div className='mt-6 flex items-center justify-center'>
+        <div className=' flex items-center justify-center'>
           {data.data.length > 0 && (
-            <>
-              <PieChart width={360} height={255}>
-                <Pie
-                  data={data.data.map((value, index) => ({
-                    name: data.labels[index],
-                    value,
-                  }))}
-                  cx='50%'
-                  cy='50%'
-                  labelLine={false}
-                  label={renderCustomizedLabel} // Apply the custom label function here
-                  outerRadius={150}
-                  innerRadius={0}
-                  dataKey='value'
-                >
-                  {data.data.map((entry, index) => {
-                    return (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                        stroke='#fff'
-                        strokeWidth={index % 2 === 1 ? 18 : 4}
-                      />
-                    );
-                  })}
-                </Pie>
-              </PieChart>
-            </>
+            <div style={{ width: '100%', height: 280,}}>
+              <ResponsiveContainer>
+                <PieChart>
+                  <Pie
+                    data={data.data.map((value, index) => ({
+                      name: data.labels[index],
+                      value,
+                    }))}
+                    cx='50%'
+                    cy='50%'
+                    labelLine={false}
+                    label={renderCustomizedLabel} // Apply the custom label function here
+                    outerRadius={130}
+                    innerRadius={0}
+                    dataKey='value'
+                  >
+                    {data.data.map((entry, index) => {
+                      return (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                          stroke='#fff'
+                          strokeWidth={index % 2 === 1 ? 18 : 4}
+                        />
+                      );
+                    })}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           )}
         </div>
       </Card>

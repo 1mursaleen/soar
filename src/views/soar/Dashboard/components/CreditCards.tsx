@@ -2,6 +2,7 @@ import ChipIconBlack from '@/assets/svg/ChipIconBlack';
 import ChipIconWhite from '@/assets/svg/ChipIconWhite';
 import GroupCardIcon from '@/assets/svg/GroupCardIcon';
 import { Avatar } from '@/components/ui';
+import classNames from 'classnames';
 
 const ActionAvatar = ({
   actionType,
@@ -23,6 +24,7 @@ const ActionAvatar = ({
 };
 const CreditCards = ({
   cardsData,
+  className,
 }: {
   cardsData: {
     currentBalance: string;
@@ -37,11 +39,13 @@ const CreditCards = ({
     titleColorClass?: string;
     icon?: JSX.Element;
   };
+  className: string;
+
 }) => {
   return (
-    <div className='w-full overflow-hidden'>
+    <div className={`${className} w-full overflow-hidden`}>
       <div className='flex items-center justify-between mb-4'>
-        <p className={`text-[22px] font-semibold text-left text-primary`}>
+        <p className={`text-lg lg:text-[22px] font-semibold text-left text-primary`}>
           My Cards
         </p>
         <p className={`text-[17px] font-semibold text-left text-primary`}>
@@ -53,12 +57,14 @@ const CreditCards = ({
         className='flex gap-4 w-full overflow-x-auto'
         style={{ scrollbarWidth: 'none' }}
       >
-        <div className='flex gap-4 min-w-[560px]'>
+        {/* <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-4'> */}
+
+        <div className="flex w-full overflow-x-auto gap-4 lg:grid lg:grid-cols-2">
           {cardsData?.map((cardInfo, index) => (
             <div
               key={index}
               style={{ border: `1px solid ${cardInfo.borderColor}` }}
-              className={`flex-shrink-0 w-[350px] h-[235px] mb-4 rounded-[25px] ${cardInfo.bgCardColor}`}
+              className={`flex-shrink-0 w-full h-[238px] mb-4 rounded-[25px] ${cardInfo.bgCardColor}`}
             >
               <div className='p-6'>
                 {/* Balance Section */}
