@@ -1,0 +1,52 @@
+@import "./assets/styles/app.css";
+
+.header-search input {
+  border-radius: 30px;
+  background-color: #f5f7fa;
+  height: 50px;
+  padding: 0 1rem;
+  border-color: transparent !important;
+  color: #718ebf !important;
+}
+.header-search input:active,
+.header-search input:focus,
+.header-search input:hover,
+.header-search input:visited {
+  border-color: transparent;
+}
+
+.write-amount input {
+  border-radius: 30px;
+  background-color: #EDF1F7;
+  height: 50px;
+  padding: 0 1rem;
+  border-color: transparent !important;
+  color: #718EBF !important;
+}
+.header-search input:active,
+.header-search input:focus,
+.header-search input:hover,
+.header-search input:visited {
+  border-color: transparent;
+}
+
+.header__saerch {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header__saerch {
+    display: block;
+    width: 94% !important;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 550px) {
+  .header__saerch {
+    width: 90% !important;
+    margin-top: .7rem;
+  }
+  .header-search input {
+    height: 44px;
+  }
+}

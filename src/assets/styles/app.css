@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+@import "./components/index.css";
+@import "./template/index.css";
+@import "./vendors/index.css";
+@import "./tailwind/index.css";
+@import "./docs/index.css";
+
+.fields-wrapper>div {
+    min-width: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fields-wrapper>div>label {
+    margin-bottom: 5px;
+}
+
+.button.settings-save-btn {
+    border-radius: 15px;
+    background: #232323;
+}
+
+.button.settings-save-btn:hover {
+    background: #3f3f3f;
+}
+
+input {
+    --tw-ring-shadow: 0 0 #000 !important;
+}
+
+@media (max-width: 767px) {
+
+    .fields-wrapper>div {
+        min-width: 100%;
+    }
+}
