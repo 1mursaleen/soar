@@ -17,11 +17,11 @@
 
 .write-amount input {
   border-radius: 30px;
-  background-color: #EDF1F7;
+  background-color: #edf1f7;
   height: 50px;
   padding: 0 1rem;
   border-color: transparent !important;
-  color: #718EBF !important;
+  color: #718ebf !important;
 }
 .header-search input:active,
 .header-search input:focus,
@@ -34,19 +34,53 @@
   display: none;
 }
 
+/* Expense Statistics */
+.expense_statistics {
+  stroke: #fff;
+}
+
 @media (max-width: 768px) {
+  header {
+    border: 0 !important;
+  }
+
   .header__saerch {
     display: block;
     width: 94% !important;
     margin: 0 auto;
   }
+
+  .expense_statistics {
+    stroke-width: 6px !important;
+  }
+
+  /* Quick Transfer */
+  .quick_transfer_price_input {
+    height: 40px !important;
+  }
 }
+
+
 @media (max-width: 550px) {
   .header__saerch {
     width: 90% !important;
-    margin-top: .7rem;
+    margin-top: 0.7rem;
   }
   .header-search input {
     height: 44px;
+  }
+
+  /* Quick Transfer */
+  .quick_transfer_price_input {
+    padding-right: 0 !important;
+  }
+  .send_button {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .send_button svg{
+    width: 20px;
+    height: 20px;
   }
 }

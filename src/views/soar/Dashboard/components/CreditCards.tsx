@@ -1,54 +1,52 @@
 import ChipIconBlack from '@/assets/svg/ChipIconBlack';
+import CreditCircleWhite from '@/assets/svg/CreditCircleWhite';
+import CreditCircleGray from '@/assets/svg/CreditCircleGray';
 import ChipIconWhite from '@/assets/svg/ChipIconWhite';
-import GroupCardIcon from '@/assets/svg/GroupCardIcon';
-import { Avatar } from '@/components/ui';
-import classNames from 'classnames';
 
-const ActionAvatar = ({
-  actionType,
-  iconColorClass,
-}: {
-  actionType: number;
-  iconColorClass: string;
-}) => {
-  switch (actionType) {
-    case 0:
-      return (
-        <Avatar className={`rounded-full ${iconColorClass}`}>
-          <GroupCardIcon className={iconColorClass} />
-        </Avatar>
-      );
-    default:
-      return <Avatar />;
-  }
-};
-const CreditCards = ({
-  cardsData,
-  className,
-}: {
-  cardsData: {
-    currentBalance: string;
-    cardHolderName: string;
-    validThru: string;
-    cardNo: string;
-    actionType: number;
-    bgCardColor: string;
-    bgColorClass?: string;
-    textColorClass?: string;
-    iconColorClass?: string;
-    titleColorClass?: string;
-    icon?: JSX.Element;
-  };
-  className: string;
+// Mock data for credit card
+const cardsData = [
+  {
+    currentBalance: '5,756.00',
+    cardHolderName: 'Eddy Cusuma',
+    validThru: '12/22',
+    cardNo: '3778 **** **** 1234',
+    actionType: 0,
+    bgCardColor: 'bg-gradient-to-br from-gray-700 to-black',
+    textColorClass: 'text-gray-100',
+    iconColorClass: 'text-gray-200',
+    titleColorClass: 'text-gray-400',
+    icon: <ChipIconWhite />,
+    cardIcon: <CreditCircleWhite />,
+    borderColor: 'transparent',
+  },
+  {
+    currentBalance: '5,000.00',
+    cardHolderName: 'John Wick',
+    validThru: '12/22',
+    cardNo: '9087 **** **** 0456',
+    actionType: 0,
+    bgCardColor: 'bg-white from-gray-700 to-white',
+    textColorClass: 'text-gray-800',
+    iconColorClass: 'text-gray-200',
+    titleColorClass: 'text-gray-800',
+    icon: <ChipIconBlack />,
+    cardIcon: <CreditCircleGray />,
+    borderColor: '#DFEAF2',
+  },
+];
 
-}) => {
+const CreditCards = ({ className }: { className: string }) => {
   return (
     <div className={`${className} w-full overflow-hidden`}>
       <div className='flex items-center justify-between mb-4'>
-        <p className={`text-lg lg:text-[22px] font-semibold text-left text-primary`}>
+        <p
+          className={`text-[16px] lg:text-[22px] font-semibold text-left text-primary`}
+        >
           My Cards
         </p>
-        <p className={`text-[17px] font-semibold text-left text-primary`}>
+        <p
+          className={`text-[14px] lg:text-[17px] font-semibold text-left text-primary`}
+        >
           See All
         </p>
       </div>
@@ -57,9 +55,7 @@ const CreditCards = ({
         className='flex gap-4 w-full overflow-x-auto'
         style={{ scrollbarWidth: 'none' }}
       >
-        {/* <div className='w-full grid grid-cols-1 lg:grid-cols-2 gap-4'> */}
-
-        <div className="flex w-full overflow-x-auto gap-4 lg:grid lg:grid-cols-2">
+        <div className='flex w-full overflow-x-auto gap-4 lg:grid lg:grid-cols-2'>
           {cardsData?.map((cardInfo, index) => (
             <div
               key={index}
@@ -76,13 +72,12 @@ const CreditCards = ({
                       Balance
                     </p>
                     <p
-                      className={`text-xl font-semibold text-left ${cardInfo.textColorClass}`}
+                      className={`text-[16px] lg:text-[20px] font-semibold text-left ${cardInfo.textColorClass}`}
                     >
                       {cardInfo.currentBalance}
                     </p>
                   </div>
                   <div>
-                    {/* {cardInfo.icon } */}
                     <ChipIconBlack />
                   </div>
                 </div>
@@ -124,10 +119,7 @@ const CreditCards = ({
                 >
                   {String(cardInfo.cardNo).replace(/\d{4}(?=\d{4})/g, '**** ')}
                 </p>
-                <ActionAvatar
-                  actionType={cardInfo.actionType}
-                  iconColorClass={cardInfo.iconColorClass}
-                />
+                <span>{cardInfo.cardIcon}</span>
               </div>
             </div>
           ))}

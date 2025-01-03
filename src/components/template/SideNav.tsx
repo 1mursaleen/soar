@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import ScrollBar from "@/components/ui/ScrollBar";
+import classNames from 'classnames';
+import ScrollBar from '@/components/ui/ScrollBar';
 import {
   SIDE_NAV_WIDTH,
   SIDE_NAV_COLLAPSED_WIDTH,
@@ -8,13 +8,13 @@ import {
   NAV_MODE_TRANSPARENT,
   SIDE_NAV_CONTENT_GUTTER,
   LOGO_X_GUTTER,
-} from "@/constants/theme.constant";
-import Logo from "@/components/template/Logo";
-import navigationConfig from "@/configs/navigation.config";
-import VerticalMenuContent from "@/components/template/VerticalMenuContent";
-import useResponsive from "@/utils/hooks/useResponsive";
-import { useAppSelector } from "@/store";
-// import ClipboardIcon from "@/assets/svg/ClipBoardIcon";
+} from '@/constants/theme.constant';
+import Logo from '@/components/template/Logo';
+import navigationConfig from '@/configs/navigation.config';
+import VerticalMenuContent from '@/components/template/VerticalMenuContent';
+import useResponsive from '@/utils/hooks/useResponsive';
+import { useAppSelector } from '@/store';
+import ClipboardIcon from '@/assets/svg/ClipBoardIcon';
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -80,15 +80,20 @@ const SideNav = () => {
         <div
           style={sideNavCollapse ? sideNavCollapseStyle : sideNavStyle}
           className={classNames(
-            "side-nav",
+            'side-nav',
             sideNavColor(),
-            !sideNavCollapse && "side-nav-expand"
+            !sideNavCollapse && 'side-nav-expand'
           )}
         >
-          <div className="side-nav-header flex items-center gap-3 bg-white pl-6 p-4 h-[105px]">
+          <div className='side-nav-header flex items-center gap-3 bg-white pl-6 p-4 h-[105px]'>
             {/* <ClipboardIcon /> */}
+            <Logo
+              mode={logoMode()}
+              type={'streamline'}
+              logoWidth={35}
+            />
             {!sideNavCollapse && (
-              <h1 className="font-extrabold text-2xl font-Inter text-primary">
+              <h1 className='font-extrabold text-2xl font-Inter text-primary'>
                 Soar Task
               </h1>
             )}
@@ -96,7 +101,7 @@ const SideNav = () => {
           {sideNavCollapse ? (
             menuContent
           ) : (
-            <div className="side-nav-content bg-white">
+            <div className='side-nav-content bg-white'>
               <ScrollBar autoHide direction={direction}>
                 {menuContent}
               </ScrollBar>

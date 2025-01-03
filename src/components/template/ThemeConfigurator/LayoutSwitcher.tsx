@@ -1,7 +1,5 @@
 import classNames from 'classnames'
 import Segment from '@/components/ui/Segment'
-import SegmentItemOption from '@/components/shared/SegmentItemOption'
-import DoubleSidedImage from '@/components/shared/DoubleSidedImage'
 import { HiCheckCircle } from 'react-icons/hi'
 import useThemeClass from '@/utils/hooks/useThemeClass'
 import { setLayout, useAppSelector, useAppDispatch } from '@/store'
@@ -77,31 +75,6 @@ const LayoutSwitcher = () => {
                             {({ active, onSegmentItemClick, disabled }) => {
                                 return (
                                     <div className="text-center">
-                                        <SegmentItemOption
-                                            hoverable
-                                            active={active}
-                                            disabled={disabled}
-                                            defaultGutter={false}
-                                            className="relative min-h-[80px] w-full"
-                                            customCheck={
-                                                <HiCheckCircle
-                                                    className={classNames(
-                                                        textTheme,
-                                                        'absolute top-2 right-2 text-lg'
-                                                    )}
-                                                />
-                                            }
-                                            onSegmentItemClick={
-                                                onSegmentItemClick
-                                            }
-                                        >
-                                            <DoubleSidedImage
-                                                className="rounded-md"
-                                                src={layout.src}
-                                                darkModeSrc={layout.srcDark}
-                                                alt=""
-                                            />
-                                        </SegmentItemOption>
                                         <div
                                             className={classNames(
                                                 active && textTheme,

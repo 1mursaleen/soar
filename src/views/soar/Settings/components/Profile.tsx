@@ -2,28 +2,16 @@ import Input from '@/components/ui/Input';
 import Avatar from '@/components/ui/Avatar';
 import Upload from '@/components/ui/Upload';
 import Button from '@/components/ui/Button';
-import Select from '@/components/ui/Select';
-import Switcher from '@/components/ui/Switcher';
 import Notification from '@/components/ui/Notification';
 import toast from '@/components/ui/toast';
 import { FormContainer } from '@/components/ui/Form';
-import FormDesription from './FormDesription';
-import FormRow from './FormRow';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { components } from 'react-select';
-import {
-  HiOutlineUserCircle,
-  HiOutlineMail,
-  HiOutlineBriefcase,
-  HiOutlineUser,
-  HiCheck,
-  HiOutlineGlobeAlt,
-} from 'react-icons/hi';
 import * as Yup from 'yup';
-import type { OptionProps, ControlProps } from 'react-select';
 import type { FormikProps, FieldInputProps, FieldProps } from 'formik';
 import EditIcon from '@/assets/svg/EditIcon';
 
+// Profile form model interface
 export type ProfileFormModel = {
   name: string;
   userName: string;
@@ -38,32 +26,25 @@ export type ProfileFormModel = {
 };
 
 type ProfileProps = {
-  data?: ProfileFormModel;
+  data?: ProfileFormModel; // Optional prop for initial form values
 };
 
-type LanguageOption = {
-  value: string;
-  label: string;
-  imgPath: string;
-};
-
+// React-Select components for custom form controls
 const { Control } = components;
 
+// Yup schema for form validation
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, 'Name must be at least 3 characters')
     .max(12, 'Name must not exceed 12 characters')
     .required('Name is required'),
-
   userName: Yup.string()
     .min(3, 'Username must be at least 3 characters')
     .max(12, 'Username must not exceed 12 characters')
     .required('Username is required'),
-
   email: Yup.string()
     .email('Invalid email format')
     .required('Email is required'),
-
   password: Yup.string()
     .required('Password is required')
     .min(8, 'Password must be at least 8 characters')
@@ -76,30 +57,24 @@ const validationSchema = Yup.object().shape({
       'Password must contain at least one special character'
     )
     .matches(/^\S*$/, 'Password must not contain spaces'),
-
   dob: Yup.date()
     .required('Date of Birth is required')
     .max(new Date(), 'Date of Birth cannot be in the future'),
-
   currentAddress: Yup.string()
     .min(5, 'Address must be at least 5 characters')
     .max(100, 'Address must not exceed 100 characters')
     .required('Current Address is required'),
-
   permanentAddress: Yup.string()
     .min(5, 'Address must be at least 5 characters')
     .max(100, 'Address must not exceed 100 characters')
     .required('Permanent Address is required'),
-
   city: Yup.string()
     .min(2, 'City must be at least 2 characters')
     .max(50, 'City must not exceed 50 characters')
     .required('City is required'),
-
   postalCode: Yup.string()
     .matches(/^\d{5}$/, 'Postal Code must be exactly 5 digits')
     .required('Postal Code is required'),
-
   country: Yup.string()
     .min(2, 'Country name must be at least 2 characters')
     .max(50, 'Country name must not exceed 50 characters')
@@ -120,6 +95,7 @@ const Profile = ({
     country: '',
   },
 }: ProfileProps) => {
+  // Handle file upload for avatar
   const onSetFormFile = (
     form: FormikProps<ProfileFormModel>,
     field: FieldInputProps<ProfileFormModel>,
@@ -128,6 +104,7 @@ const Profile = ({
     form.setFieldValue(field.name, URL.createObjectURL(file[0]));
   };
 
+  // Handle form submission
   const onFormSubmit = (
     values: ProfileFormModel,
     setSubmitting: (isSubmitting: boolean) => void
@@ -142,35 +119,37 @@ const Profile = ({
   return (
     <Formik
       enableReinitialize
-      initialValues={data}
-      validationSchema={validationSchema}
+      initialValues={data} // Initialize form with data prop or default values
+      validationSchema={validationSchema} // Use validation schema for form validation
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         setTimeout(() => {
-          onFormSubmit(values, setSubmitting);
+          onFormSubmit(values, setSubmitting); // Submit the form values after a delay
         }, 1000);
       }}
     >
-      {({ values, touched, errors, isSubmitting }) => { 
+      {({ touched, errors, isSubmitting }) => {
         return (
           <Form>
             <FormContainer>
               <div className='content-wrapper flex flex-col md:flex-row'>
-                {/* Avatar */}
+                {/* Avatar Section */}
                 <div className='text-center flex-1 mt-4'>
                   <Field name='avatar'>
                     {({ field, form }: FieldProps) => {
-                      const avatarProps = { src: field.value || "/img/avatars/profile.jpg" };
+                      const avatarProps = {
+                        src: field.value || '/img/avatars/profile.jpg', // Default avatar if no file selected
+                      };
                       return (
                         <Upload
                           className='cursor-pointer'
-                          showList={false}
-                          uploadLimit={1}
-                          onChange={(files) =>
-                            onSetFormFile(form, field, files)
+                          showList={false} // Prevent showing the list of uploaded files
+                          uploadLimit={1} // Limit to one file upload
+                          onChange={
+                            (files) => onSetFormFile(form, field, files) // Update form field when a file is selected
                           }
-                          onFileRemove={(files) =>
-                            onSetFormFile(form, field, files)
+                          onFileRemove={
+                            (files) => onSetFormFile(form, field, files) // Remove the file when it's deleted
                           }
                         >
                           <Avatar
@@ -179,6 +158,7 @@ const Profile = ({
                             shape='circle'
                             {...avatarProps}
                           />
+                          {/* Edit icon overlay */}
                           <span className='absolute bottom-0 right-0'>
                             <EditIcon />
                           </span>
@@ -188,7 +168,9 @@ const Profile = ({
                   </Field>
                 </div>
 
+                {/* Form Fields Section */}
                 <div className='fields-wrapper flex flex-wrap flex-1 md:flex-[5]'>
+                  {/* Name field */}
                   <div className=''>
                     <label className='text-inputLabel'>Your Name</label>
                     <Field
@@ -210,6 +192,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* User Name field */}
                   <div>
                     <label className='text-inputLabel'>User Name</label>
                     <Field
@@ -231,6 +214,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* Email field */}
                   <div>
                     <label className='text-inputLabel'>Email</label>
                     <Field
@@ -252,6 +236,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* Password field */}
                   <div>
                     <label className='text-inputLabel'>Password</label>
                     <Field
@@ -273,6 +258,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* Date of Birth field */}
                   <div>
                     <label className='text-inputLabel'>Date of Birth</label>
                     <Field
@@ -294,6 +280,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* Current Address field */}
                   <div>
                     <label className='text-inputLabel'>Present Address</label>
                     <Field
@@ -315,6 +302,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* Permanent Address field */}
                   <div>
                     <label className='text-inputLabel'>Permanent Address</label>
                     <Field
@@ -336,6 +324,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* City field */}
                   <div>
                     <label className='text-inputLabel'>City</label>
                     <Field
@@ -357,6 +346,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* Postal Code field */}
                   <div>
                     <label className='text-inputLabel'>Postal Code</label>
                     <Field
@@ -378,6 +368,7 @@ const Profile = ({
                     )}
                   </div>
 
+                  {/* Country field */}
                   <div>
                     <label className='text-inputLabel'>Country</label>
                     <Field

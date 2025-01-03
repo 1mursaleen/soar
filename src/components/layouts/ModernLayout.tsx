@@ -1,17 +1,15 @@
 import Header from '@/components/template/Header';
 import SidePanel from '@/components/template/SidePanel';
 import UserDropdown from '@/components/template/UserDropdown';
-import LanguageSelector from '@/components/template/LanguageSelector';
-import Notification from '@/components/template/Notification';
-import SideNavToggle from '@/components/template/SideNavToggle';
 import MobileNav from '@/components/template/MobileNav';
-import Search from '@/components/template/Search';
 import SideNav from '@/components/template/SideNav';
 import View from '@/views';
 import Input from '@/components/ui/Input';
 import { HiOutlineSearch } from 'react-icons/hi';
 import useResponsive from '@/utils/hooks/useResponsive';
 import { useLocation } from 'react-router';
+import Notification from '../template/Notification';
+
 
 const HeaderActionsStart = () => {
   const { smaller } = useResponsive();
@@ -28,8 +26,6 @@ const HeaderActionsStart = () => {
           ? 'Setting'
           : 'Overview'}
       </h3>
-      {/* <SideNavToggle /> */}
-      {/* <Search /> */}
     </>
   );
 };
@@ -39,7 +35,6 @@ const HeaderActionsEnd = () => {
 
   return (
     <>
-      {/* <LanguageSelector /> */}
       {!smaller.md && (
         <>
           <Input
